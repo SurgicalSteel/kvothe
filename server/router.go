@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//route is a struct for router
+// route is a struct for router
 type route struct {
 	interfaces.IRouter
 }
@@ -24,7 +24,7 @@ func Router() interfaces.IRouter {
 	return r
 }
 
-//Routing is a function for http routing
+// Routing is a function for http routing
 func (route *route) Routing(config *resources.AppConfig, dbObj map[string]interfaces.IDatabase, redisdb map[string]interfaces.IRedis) *gin.Engine {
 
 	kvotheController := ServiceInject(config, dbObj, redisdb)
@@ -47,6 +47,7 @@ func (route *route) Routing(config *resources.AppConfig, dbObj map[string]interf
 		noAuth.GET("/ping", kvotheController.PingHandler)
 		noAuth.GET("/panic", kvotheController.TriggerPanic)
 		noAuth.GET("/slack", kvotheController.SlackManualHandler)
+		noAuth.POST("/slack-slash-command", kvotheController.HandleSlackSlashCommand)
 		noAuth.GET("/quote/:id", kvotheController.GetSongQuoteByIDHandler)
 		noAuth.POST("/backfill-redis", kvotheController.BackfillRedisHandler)
 	}
