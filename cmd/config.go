@@ -62,6 +62,7 @@ func loadConfig() *resources.AppConfig {
 	conf.Core.Kvothe.Slack.WebhookURL = os.Getenv("KVOTHE_SERVICE_WEBHOOK_URL")
 	conf.Core.Kvothe.Slack.WebhookChannel = os.Getenv("KVOTHE_SERVICE_WEBHOOK_CHANNEL")
 	conf.Core.Kvothe.Slack.IsEnableSlack = utils.GetBool(os.Getenv("KVOTHE_SERVICE_IS_ENABLE_SLACK"))
+	conf.Core.Kvothe.Slack.VerificationToken = os.Getenv("KVOTHE_SERVICE_VERIFICATION_TOKEN")
 
 	conf.Core.Kvothe.GRPC.Port = os.Getenv("KVOTHE_SERVICE_GRPC_PORT")
 	return &conf
